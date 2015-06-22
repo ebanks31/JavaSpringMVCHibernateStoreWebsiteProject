@@ -8,6 +8,7 @@ import java.util.List;
 
 
 
+
 import com.ebanks.springapp.model.Person;
  
 // TODO: Auto-generated Javadoc
@@ -58,7 +59,7 @@ public interface PersonService {
      * @param idList the id list
      * @return the people by address
      */
-    public List<Person> getPeopleByAddress(List<Integer> idList, String address);
+    public List<Person> getPeopleByAddress(String address);
     
     
     /**
@@ -67,7 +68,7 @@ public interface PersonService {
      * @param idList the id list
      * @return the people by with ownership
      */
-    public List<Person> getPeopleByWithOwnership(List<Integer> idList);
+    public List<Person> getPeopleByWithOwnership();
     
     
     /**
@@ -76,7 +77,7 @@ public interface PersonService {
      * @param idList the id list
      * @return the people by with out ownership
      */
-    public List<Person> getPeopleByWithOutOwnership(List<Integer> idList);
+    public List<Person> getPeopleByWithOutOwnership();
 
 
 	/**
@@ -92,7 +93,7 @@ public interface PersonService {
 	 *
 	 * @return the all distinct address
 	 */
-	public List<Object[]> getAllDistinctAddress();
+	public List<Person> getAllDistinctAddress();
 	
 	/**
 	 * List persons order by last name asc.
@@ -129,6 +130,14 @@ public interface PersonService {
 	 * @return the person list average min max age
 	 */
 	public List<Person> getPersonListAverageMinMaxAge();
+
+	/**
+	 * Persons by specific address.
+	 *
+	 * @param address the address
+	 * @return the list
+	 */
+	public List<Person> personsBySpecificAddress(String address);
 
      
 }

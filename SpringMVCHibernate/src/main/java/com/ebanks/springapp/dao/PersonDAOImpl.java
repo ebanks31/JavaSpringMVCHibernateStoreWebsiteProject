@@ -16,6 +16,7 @@ import java.util.List;
 
 
 
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
  
+
 
 
 
@@ -215,7 +217,7 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Person> getPeopleByAddress(List<Integer> idList, String address) {
+	public List<Person> getPeopleByAddress(String address) {
 		// TODO Auto-generated method stub
         Session session = this.sessionFactory.getCurrentSession();
         List<Person> personsList = session.createQuery("from Person").list();
@@ -237,7 +239,7 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Person> getPeopleByWithOwnership(List<Integer> idList) {
+	public List<Person> getPeopleByWithOwnership() {
 		// TODO Auto-generated method stub
         Session session = this.sessionFactory.getCurrentSession();
         List<Person> personsList = session.createQuery("from Person").list();
@@ -255,7 +257,7 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Person> getPeopleByWithOutOwnership(List<Integer> idList) {
+	public List<Person> getPeopleByWithOutOwnership() {
 		// TODO Auto-generated method stub
         Session session = this.sessionFactory.getCurrentSession();
         List<Person> personsList = session.createQuery("from Person").list();
@@ -310,7 +312,7 @@ public class PersonDAOImpl implements PersonDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Object[]> getAllDistinctAddress() {
+	public List<Person> getAllDistinctAddress() {
 		// TODO Auto-generated method stub
         Session session = this.sessionFactory.getCurrentSession();
         List<Person> personsList = session.createQuery("from Person").list();
@@ -320,7 +322,24 @@ public class PersonDAOImpl implements PersonDAO {
                 .add(Projections.property("address"));
 criteria.setProjection(Projections.distinct(columns));
 
-        List<Object[]> personsCriteriaList = criteria.list();
+        List<Person> personsCriteriaList = criteria.list();
+        
+        for(Person person : personsList){
+            logger.info("Person List::"+ person);
+        }
+        return personsCriteriaList;
+	}
+
+	@Override
+	public List<Person> personsBySpecificAddress(String address) {
+
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Person> personsList = session.createQuery("from Person").list();
+        
+        Criteria criteria = session.createCriteria(Person.class)
+                .add(Restrictions.eq("address", "address"));;
+
+        List<Person> personsCriteriaList = criteria.list();
         
         for(Person person : personsList){
             logger.info("Person List::"+ person);

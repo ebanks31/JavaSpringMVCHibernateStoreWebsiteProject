@@ -11,11 +11,13 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
  
+
 
 
 
@@ -93,20 +95,20 @@ public class PersonServiceImpl implements PersonService {
     
     @Override
     @Transactional
-	public List<Person> getPeopleByWithOwnership(List<Integer> idList) {
-		return this.personDAO.getPeopleByWithOwnership(idList);
+	public List<Person> getPeopleByWithOwnership() {
+		return this.personDAO.getPeopleByWithOwnership();
 	}
 
     @Override
     @Transactional
-	public List<Person> getPeopleByWithOutOwnership(List<Integer> idList) {
-		return this.personDAO.getPeopleByWithOutOwnership(idList);
+	public List<Person> getPeopleByWithOutOwnership() {
+		return this.personDAO.getPeopleByWithOutOwnership();
 	}
 
     @Override
     @Transactional
-	public List<Person> getPeopleByAddress(List<Integer> idList, String address) {
-		return this.personDAO.getPeopleByAddress(idList, address);
+	public List<Person> getPeopleByAddress(String address) {
+		return this.personDAO.getPeopleByAddress(address);
 	}
 
 
@@ -119,7 +121,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-	public List<Object[]> getAllDistinctAddress() {
+	public List<Person> getAllDistinctAddress() {
 		return this.personDAO.getAllDistinctAddress();
 	}
 
@@ -151,6 +153,12 @@ public class PersonServiceImpl implements PersonService {
     @Transactional
 	public List<Person> getPersonListAverageMinMaxAge() {
 		return this.personDAO.getPersonListAverageMinMaxAge();
+	}
+
+	@Override
+	public List<Person> personsBySpecificAddress(String address) {
+		// TODO Auto-generated method stub
+		return this.personDAO.personsBySpecificAddress(address);
 	}
 
 	

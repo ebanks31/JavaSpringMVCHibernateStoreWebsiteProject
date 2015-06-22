@@ -38,7 +38,7 @@ public class PersonController {
     @RequestMapping(value = "/persons", method = RequestMethod.GET)
     public String listPersons(Model model) {
         model.addAttribute("person", new Person());
-        model.addAttribute("listPersons", this.personService.listPersonsOrderbyLastNameASC());
+        model.addAttribute("listPersons", this.personService.listPersons());
         return "person";
       //  return "person";
     }
@@ -106,6 +106,81 @@ public class PersonController {
         return "person";
     }
     
+
+    /**
+     * List persons above legal age asc.
+     *
+     * @param model the model
+     * @return the string
+     */
+    @RequestMapping(value = "/personsASC", method = RequestMethod.GET)
+    public String listPersonsAboveLegalAgeASC(Model model) {
+        model.addAttribute("person", new Person());
+        model.addAttribute("listPersons", this.personService.listPersonsAboveOrEqualToLegalAge());
+        return "person";
+    }
+ 
+    
+    /**
+     * List persons.
+     *
+     * @param model the model
+     * @return the string
+     */
+    @RequestMapping(value = "/personsWithOwnership", method = RequestMethod.GET)
+    public String listPersonsWithOwnerShip(Model model) {
+        model.addAttribute("person", new Person());
+        model.addAttribute("listPersons", this.personService.getPeopleByWithOwnership());
+        return "person";
+    }
+    
+    /**
+     * List persons.
+     *
+     * @param model the model
+     * @return the string
+     */
+    @RequestMapping(value = "/personsWithOutOwnership", method = RequestMethod.GET)
+    public String listPersonsWithOutOwnerShip(Model model) {
+        model.addAttribute("person", new Person());
+        model.addAttribute("listPersons", this.personService.getPeopleByWithOutOwnership());
+        return "person";
+    }
+    
+ 
+
+    /**
+     * List persons by distinct address.
+     *
+     * @param model the model
+     * @return the string
+     */
+    @RequestMapping(value = "/personsByDistinctAddress", method = RequestMethod.GET)
+    public String listPersonsByDistinctAddress(Model model) {
+        model.addAttribute("person", new Person());
+        model.addAttribute("listPersons", this.personService.getAllDistinctAddress());
+        return "person";
+    }
+
+    /**
+     * List persons by specific address.
+     *
+     * @param address the address
+     * @param model the model
+     * @return the string
+     */
+    @RequestMapping(value = "/personsBySpecificAddress{address}")
+    public String listPersonsBySpecificAddress(@PathVariable("address") String address, Model model) {
+        model.addAttribute("person", new Person());
+        model.addAttribute("listPersons", this.personService.personsBySpecificAddress(address));
+        return "person";
+    }
+    
+	/**
+	 * Simple.
+	 *
+	 * @return the string
+	 */
 	@RequestMapping("/simple")
 	public @ResponseBody String simple() {
 		return "Hello world!";

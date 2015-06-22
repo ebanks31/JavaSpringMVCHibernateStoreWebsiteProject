@@ -8,6 +8,7 @@ import java.util.List;
 
 
 
+
 import com.ebanks.springapp.model.Person;
  
 /**
@@ -58,26 +59,24 @@ public interface PersonDAO {
      * @param idList the id list
      * @return the people by address
      */
-    public List<Person> getPeopleByAddress(List<Integer> idList, String address);
+    public List<Person> getPeopleByAddress(String address);
     
     
 
     /**
      * Gets the people by with ownership.
      *
-     * @param idList the id list
      * @return the people by with ownership
      */
-    public List<Person> getPeopleByWithOwnership(List<Integer> idList);
+    public List<Person> getPeopleByWithOwnership();
     
     
     /**
      * Gets the people by with out ownership.
      *
-     * @param idList the id list
      * @return the people by with out ownership
      */
-    public List<Person> getPeopleByWithOutOwnership(List<Integer> idList);
+    public List<Person> getPeopleByWithOutOwnership();
 
 	/**
 	 * Gets the address list.
@@ -92,28 +91,28 @@ public interface PersonDAO {
 	 *
 	 * @return the all distinct address
 	 */
-	List<Object[]> getAllDistinctAddress();
+	public List<Person> getAllDistinctAddress();
 
 	/**
 	 * List persons order by last name asc.
 	 *
 	 * @return the list
 	 */
-	List<Person> listPersonsOrderbyLastNameASC();
+	public List<Person> listPersonsOrderbyLastNameASC();
 	
 	/**
 	 * List persons orderby last name desc.
 	 *
 	 * @return the list
 	 */
-	List<Person> listPersonsOrderbyLastNameDESC();
+	public List<Person> listPersonsOrderbyLastNameDESC();
 
 	/**
 	 * List persons above or equal to legal age.
 	 *
 	 * @return the list
 	 */
-	List<Person> listPersonsAboveOrEqualToLegalAge();
+	public List<Person> listPersonsAboveOrEqualToLegalAge();
 
 
 	/**
@@ -121,14 +120,22 @@ public interface PersonDAO {
 	 *
 	 * @return the list
 	 */
-	List<Person> listPersonsLessThanLegalAge();
+	public List<Person> listPersonsLessThanLegalAge();
 
 	/**
 	 * Gets the person list average min max age.
 	 *
 	 * @return the person list average min max age
 	 */
-	List<Person> getPersonListAverageMinMaxAge();
+	public List<Person> getPersonListAverageMinMaxAge();
+	
+	/**
+	 * Persons by specific address.
+	 *
+	 * @param address the address
+	 * @return the list
+	 */
+	public List<Person> personsBySpecificAddress(String address);
 
 
 }
