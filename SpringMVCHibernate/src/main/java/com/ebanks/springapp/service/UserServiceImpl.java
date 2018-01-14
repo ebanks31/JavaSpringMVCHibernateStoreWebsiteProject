@@ -17,6 +17,8 @@ import com.hazelcast.core.HazelcastInstance;
  */
 @Service
 public class UserServiceImpl implements UserService {
+	
+	/** The user list. */
 	private final Map<String, User> userList = null;
 
 	/** The user DAO. */
@@ -27,6 +29,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private HazelcastInstance hazelcastInstance;
 
+    /**
+     * Instantiates a new user service impl.
+     *
+     * @param hazelcastInstance the hazelcast instance
+     */
     @Autowired
     public UserServiceImpl(HazelcastInstance hazelcastInstance) {
         this.hazelcastInstance = hazelcastInstance;
