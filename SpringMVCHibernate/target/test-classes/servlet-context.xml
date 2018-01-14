@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:bean xmlns="http://www.springframework.org/schema/mvc"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
- 
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/aop
+	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+	    <aop:aspectj-autoproxy />
+
         <beans:bean
 class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <beans:property name="location">
-        <beans:value>classpath:orcl.properties</beans:value>
+        <beans:value>classpath:/properties/orcl.properties</beans:value>
     </beans:property>
 </beans:bean>
 
-    <!-- DispatcherServlet Context: defines this servlet's request-processing 
+    <!-- DispatcherServlet Context: defines this servlet's request-processing
         infrastructure -->
- 
+
     <!-- Enables the Spring MVC @Controller programming model -->
     <annotation-driven />
- 
-    <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+
+    <!-- Handles HTTP GET requests for /resources/** by efficiently serving
         up static resources in the ${webappRoot}/resources directory -->
     <resources mapping="/resources/**" location="/resources/" />
- 
-    <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+
+    <!-- Resolves views selected for rendering by @Controllers to .jsp resources
         in the /WEB-INF/views directory -->
     <beans:bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -40,7 +45,7 @@ class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <beans:property name="username" value="pankaj" />
         <beans:property name="password" value="pankaj123" />
     </beans:bean>-->
- 
+
      <!-- declare datasource bean -->
  <beans:bean id="dataSource"
   class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -67,20 +72,20 @@ class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
             </beans:props>
         </beans:property>
     </beans:bean>
-     
+
     <beans:bean id="personDAO" class="com.ebanks.springapp.dao.PersonDAOImpl">
         <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </beans:bean>
-    
+
     <beans:bean id="personService" class="com.ebanks.springapp.service.PersonServiceImpl">
         <beans:property name="personDAO" ref="personDAO"></beans:property>
     </beans:bean>
     <context:component-scan base-package="com.ebanks.springapp" />
-     
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
-     
+
     <beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </beans:bean>
- 
+
 </beans:beans>

@@ -2,6 +2,15 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <html>
 <head>
     <title>Person Page</title>
@@ -14,63 +23,12 @@
 </head>
 <body>
 <h1>
-    Add a Person
+    Person List
 </h1>
- 
-<c:url var="addAction" value="/person/add" ></c:url>
- 
-<form:form action="${addAction}" commandName="person">
-<table>
-    <c:if test="${!empty person.firstName}">
-    <tr>
-        <td>
-            <form:label path="id">
-                <spring:message text="ID"/>
-            </form:label>
-        </td>
-        <td>
-            <form:input path="id" readonly="true" size="8"  disabled="true" />
-            <form:hidden path="id" />
-        </td> 
-    </tr>
-    </c:if>
-    <tr>
-        <td>
-            <form:label path="firstName">
-                <spring:message text="Name"/>
-            </form:label>
-        </td>
-        <td>
-            <form:input path="firstName" />
-        </td> 
-    </tr>
-    <tr>
-        <td>
-            <form:label path="age">
-                <spring:message text="Age"/>
-            </form:label>
-        </td>
-        <td>
-            <form:input path="age" />
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <c:if test="${!empty person.firstName}">
-                <input type="submit"
-                    value="<spring:message text="Edit Person"/>" />
-            </c:if>
-            <c:if test="${empty person.firstName}">
-                <input type="submit"
-                    value="<spring:message text="Add Person"/>" />
-            </c:if>
-        </td>
-    </tr>
-</table>  
-</form:form>
+
 <br>
 <h3>Persons List</h3>
-<c:if test="${!empty listPersons}">
+<c:if test="${!empty listPerson}">
     <table class="tg">
     <tr>
         <th width="80">Person's ID</th>
@@ -83,7 +41,7 @@
         <th width="60">Edit</th>
         <th width="60">Delete</th>
     </tr>
-    <c:forEach items="${listPersons}" var="person">
+    <c:forEach items="${listPerson}" var="person">
         <tr>
             <td>${person.id}</td>
             <td>${person.firstName}</td>
@@ -98,5 +56,12 @@
     </c:forEach>
     </table>
 </c:if>
+<c:url var="addUrl" value="/persons/add" />
+
+<c:if test="${empty listPersons}">
+ There are currently no persons in the list. <a href="${addUrl}">Add</a> a person.
+</c:if>
+<a href="<c:url value='/person/add' />" class="btn btn-info" role="button">Add Person</a>
+
 </body>
 </html>
