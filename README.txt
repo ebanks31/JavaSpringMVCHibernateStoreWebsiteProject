@@ -17,3 +17,6 @@ There is a "Java Classes" folder that shows all the classes. This is so anyone c
 I also have "Test Classes"  folder to show test classes including integation and unit tests. 
 
 I am still working on these unit and integration test as I learned how to test using the Spring MVC framework.
+
+There is also logging that used for testing to make sure everything works. I insecure logs such as getting a person's Id from database and their name.
+I left these in for my testing purposes. I will remove them eventually when I created all the unit and integration tests to ensure everything works properly.
