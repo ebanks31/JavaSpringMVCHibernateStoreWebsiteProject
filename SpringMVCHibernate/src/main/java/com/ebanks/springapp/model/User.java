@@ -15,9 +15,8 @@ import javax.validation.constraints.NotNull;
 import com.ebanks.springapp.validators.PasswordMatches;
 import com.ebanks.springapp.validators.ValidEmail;
 
-// TODO: Auto-generated Javadoc
 /**
- * Entity bean with JPA annotations for Person table.
+ * Entity bean with JPA annotations for User table.
  * Hibernate provides JPA implementation
  * @author ebanks
  *

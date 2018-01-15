@@ -12,11 +12,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Entity bean with JPA annotations for Person table.
+ * Entity bean with JPA annotations for Order table.
  * Hibernate provides JPA implementation
  * @author ebanks
  *
  */
+@Entity
 @Table(name="ORDER")
 public class Order {
 

@@ -7,17 +7,17 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.ebanks.springapp.dao.UserDAO;
 import com.ebanks.springapp.model.User;
 import com.hazelcast.core.HazelcastInstance;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PersonServiceImpl.
+ * The Class UserServiceImpl. The class is the service layer for the User Controller.
  */
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	/** The user list. */
 	private final Map<String, User> userList = null;
 
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     /**
      * Instantiates a new user service impl.
      *
-     * @param hazelcastInstance the hazelcast instance
+     * @param hazelcastInstance the Hazelcast instance
      */
     @Autowired
     public UserServiceImpl(HazelcastInstance hazelcastInstance) {
@@ -54,13 +54,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public List<User> listUsers() {
-		List<User> userList = this.userDAO.listUsers();
-		instance.
-		//Storing userlist in Hazel in-memory cache under queue name userList
-		instance.getQueue("usersList").offer(userList);
-		instance.remove(username);
+		//Storing userlist in Hazel in-memory cache under a Map
+		//List<User> userList = this.userDAO.listUsers();
+		Map<String, List<User>> userHazelCastMap = hazelcastInstance.getMap("userMap");
+		userHazelCastMap.put("userList", this.userDAO.listUsers());
 
-		return userList;
+		return userHazelCastMap.get("userList");
 	}
 
 	/**
@@ -72,6 +71,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void addUser(final User user) {
+		// Adding user to Hazelcast. Each UserId will be unique so this will be the key for the Map.
+		Map<Integer, User> userHazelCastMap = hazelcastInstance.getMap("userMap");
+		userHazelCastMap.put(user.getId(), user);
+
 		this.userDAO.addUser(user);
 	}
 

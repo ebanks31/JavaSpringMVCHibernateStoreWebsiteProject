@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author ebanks
  *
  */
-//@Entity
+@Entity
 @Table(name="CART")
 public class Cart {
 

@@ -10,12 +10,12 @@ import javax.persistence.Table;
 
 // TODO: Auto-generated Javadoc
 /**
- * Entity bean with JPA annotations for Person table.
+ * Entity bean with JPA annotations for Product table.
  * Hibernate provides JPA implementation
  * @author ebanks
  *
  */
-//@Entity
+@Entity
 @Table(name="PRODUCT")
 public class Product {
 
