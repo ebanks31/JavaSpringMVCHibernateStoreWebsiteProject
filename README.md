@@ -22,7 +22,7 @@ There is also logging that used for testing to make sure everything works. I hav
 I left these in for my testing purposes. I will remove them eventually when I created all the unit and integration tests to ensure everything works properly.
 
 **Java Classes** - This folder shows all the classes for this projects.(excluding test classes. There are located in the separate folder). This is so anyone can see all the classes with digging deep to the src folder to find these classes.
-I also have **Test Classes** - This folder shows the test classes including integration and unit tests.
+**Test Classes** - This folder shows the test classes including integration and unit tests.
 
 **Documents** - This folder will contain documentation of this project. For now, this folder includes the requirements and test cases for this Spring MVC Store project.
  
