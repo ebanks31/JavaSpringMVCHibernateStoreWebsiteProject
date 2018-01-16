@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class CartController {
-	private static final Logger HOME_LOGGER = Logger.getLogger(CartController.class);
+	private static final Logger CART_CONTROLLER_LOGGER = Logger.getLogger(CartController.class);
+	private static final String CART = "cart";
 	//TODO: Need to more REST End points for Cart Controller.
 
 	/**
-	 * Shows the home page
+	 * Shows the user's cart
 	 *
 	 * @param model
 	 *            the model
@@ -23,7 +24,8 @@ public class CartController {
 	 */
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String home(final Model model) {
-		HOME_LOGGER.info("Going to home page");
-		return "home";
+		CART_CONTROLLER_LOGGER.info("Going to cart page");
+
+		return CART;
 	}
 }

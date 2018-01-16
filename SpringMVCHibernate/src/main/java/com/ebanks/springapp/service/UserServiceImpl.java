@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 
-	/** The instance. */
+	/** The Hazelcast instance. */
 	@Autowired
 	private HazelcastInstance hazelcastInstance;
 

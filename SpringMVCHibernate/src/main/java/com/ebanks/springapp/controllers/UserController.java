@@ -29,6 +29,7 @@ public class UserController {
 	private static final String LIST_USERS_MODEL = "listUser";
 
 	/** The user service. */
+	@Autowired
 	private UserService userService;
 
 	/**

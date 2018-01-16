@@ -23,6 +23,7 @@ public class ProductController {
 	private static final String LIST_PRODUCTS_MODEL = "listProducts";
 
 	/** The user service. */
+	@Autowired
 	private ProductService productService;
 
 	/**

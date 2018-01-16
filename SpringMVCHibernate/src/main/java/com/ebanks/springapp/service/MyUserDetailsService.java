@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ebanks.springapp.model.User;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MyUserDetailsService.
  */

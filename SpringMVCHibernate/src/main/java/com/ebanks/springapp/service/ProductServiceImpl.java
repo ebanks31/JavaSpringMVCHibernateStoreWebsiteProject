@@ -1,6 +1,8 @@
 package com.ebanks.springapp.service;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,14 +10,29 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ebanks.springapp.dao.ProductDAO;
 import com.ebanks.springapp.model.Product;
 import com.ebanks.springapp.model.User;
+import com.hazelcast.core.HazelcastInstance;
 
 /**
- * The Class productServiceImpl.
+ * The Class UserServiceImpl. The class is the service layer for the Product Controller.
  */
 @Service
 public class ProductServiceImpl implements ProductService {
 	@Autowired
     private ProductDAO productDAO;
+
+	/** The Hazelcast instance. */
+	@Autowired
+	private HazelcastInstance hazelcastInstance;
+
+    /**
+     * Instantiates a new product service impl.
+     *
+     * @param hazelcastInstance the Hazelcast instance
+     */
+    @Autowired
+    public ProductServiceImpl(HazelcastInstance hazelcastInstance) {
+        this.hazelcastInstance = hazelcastInstance;
+    }
 
     /**
      * Sets the product DAO.
@@ -34,6 +51,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void addProduct(final Product product) {
+		// Adding product to Hazelcast. Each UserId will be unique so this will be the key for the Map.
+		Map<Integer, Product> userHazelCastMap = hazelcastInstance.getMap("productMap");
+		userHazelCastMap.put(product.getId(), product);
+
         this.productDAO.addProduct(product);
     }
 
@@ -77,6 +98,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public List<Product> listProducts() {
+		Map<String, List<Product>> userHazelCastMap = hazelcastInstance.getMap("userMap");
+		userHazelCastMap.put("userList", this.productDAO.listProducts());
         return this.productDAO.listProducts();
     }
 }
