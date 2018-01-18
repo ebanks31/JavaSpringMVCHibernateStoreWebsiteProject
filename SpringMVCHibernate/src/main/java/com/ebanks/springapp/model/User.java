@@ -13,85 +13,83 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.ebanks.springapp.validators.PasswordMatches;
-import com.ebanks.springapp.validators.ValidEmail;
+//import com.ebanks.springapp.validators.ValidEmail;
 
 /**
- * Entity bean with JPA annotations for User table.
- * Hibernate provides JPA implementation
+ * Entity bean with JPA annotations for User table. Hibernate provides JPA
+ * implementation
+ *
  * @author ebanks
  *
  */
 @Entity
 @PasswordMatches
-@Table(name="USER")
+@Table(name = "USER")
 public class User {
 
 	/** The id. */
-	//Auto increment ID when a user is added.
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="person_seq")
-    @SequenceGenerator(
-        name="person_seq",
-        sequenceName="person_seq",
-        allocationSize=20
-    )
+	// Auto increment ID when a user is added.
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+	@SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 20)
 
-    // Declaring columns of User table for usage with Hibernate
-    private int id;
+	// Declaring columns of User table for usage with Hibernate
+	private int id;
 
-    /** The first name. */
-    @Column(name="firstname")
-    private String firstName;
+	/** The first name. */
+	@Column(name = "firstname")
+	private String firstName;
 
-    /** The last name. */
-    @Column(name="lastname")
-    private String lastName;
+	/** The last name. */
+	@Column(name = "lastname")
+	private String lastName;
 
-    /** The age. */
-    private int age;
+	/** The age. */
+	private int age;
 
-    /** The email. */
-    private String email;
-    //TODO: Username is email. Will keep email field here for now and decide if I separate the username from the email.
+	/** The email. */
+	private String email;
+	// TODO: Username is email. Will keep email field here for now and decide if I
+	// separate the username from the email.
 
-    /** The address. */
-    private String address;
+	/** The address. */
+	private String address;
 
-    /** The phone number. */
-    @Column(name="phonenumber")
-    private String phoneNumber;
+	/** The phone number. */
+	@Column(name = "phonenumber")
+	private String phoneNumber;
 
-    /** The ownership. */
-    private String ownership;
+	/** The ownership. */
+	private String ownership;
 
-    /** The username. */
-    @NotNull
-    @NotEmpty
-    @ValidEmail
-    private String username;
+	/** The username. */
+	@NotNull
+	@NotEmpty
+	// @ValidEmail
+	private String username;
 
-    /** The password. */
-    @NotNull
-    @NotEmpty
-    private String password;
+	/** The password. */
+	@NotNull
+	@NotEmpty
+	private String password;
 
-    /** The matching password. */
-    @NotNull
-    @NotEmpty
-    private String matchingPassword;
+	/** The matching password. */
+	@NotNull
+	@NotEmpty
+	private String matchingPassword;
 
-    /** The boolean indicating whether a user is active. */
-    @Column(name="Active")
-    private boolean active;
+	/** The boolean indicating whether a user is active. */
+	@Column(name = "Active")
+	private boolean active;
 
-    /** The display name. */
-    private String displayName;
+	/** The display name. */
+	private String displayName;
 
-    /*
-     * The roles of the user (ROLE_USER, ROLE_ADMIN)
-     */
-    private List<String> roles;
+	/*
+	 * The roles of the user (ROLE_USER, ROLE_ADMIN)
+	 */
+	private List<String> roles;
 
 	/**
 	 * Gets the roles.
@@ -105,7 +103,8 @@ public class User {
 	/**
 	 * Sets the roles.
 	 *
-	 * @param list the new roles
+	 * @param list
+	 *            the new roles
 	 */
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
@@ -123,7 +122,8 @@ public class User {
 	/**
 	 * Sets the matching password.
 	 *
-	 * @param matchingPassword the new matching password
+	 * @param matchingPassword
+	 *            the new matching password
 	 */
 	public void setMatchingPassword(String matchingPassword) {
 		this.matchingPassword = matchingPassword;
@@ -141,7 +141,8 @@ public class User {
 	/**
 	 * Sets the display name.
 	 *
-	 * @param displayName the new display name
+	 * @param displayName
+	 *            the new display name
 	 */
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
@@ -159,17 +160,18 @@ public class User {
 	/**
 	 * Sets the user to be active or not.
 	 *
-	 * @param active the new active
+	 * @param active
+	 *            the new active
 	 */
 	public void setActive(boolean active) {
 		this.active = active;
 	}
 
 	/**
-     * Gets the username.
-     *
-     * @return the username
-     */
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
 	public String getUsername() {
 		return username;
 	}
@@ -177,17 +179,18 @@ public class User {
 	/**
 	 * Sets the username.
 	 *
-	 * @param username the new username
+	 * @param username
+	 *            the new username
 	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
 	/**
-     * Gets the password.
-     *
-     * @return the password
-     */
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
@@ -195,25 +198,27 @@ public class User {
 	/**
 	 * Sets the password.
 	 *
-	 * @param password the password
+	 * @param password
+	 *            the password
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	/**
-     * Gets the age.
-     *
-     * @return the age
-     */
-    public int getAge() {
+	 * Gets the age.
+	 *
+	 * @return the age
+	 */
+	public int getAge() {
 		return age;
 	}
 
 	/**
 	 * Sets the age.
 	 *
-	 * @param age the new age
+	 * @param age
+	 *            the new age
 	 */
 	public void setAge(final int age) {
 		this.age = age;
@@ -225,31 +230,33 @@ public class User {
 	 * @return the id
 	 */
 	public int getId() {
-        return id;
-    }
+		return id;
+	}
 
-    /**
-     * Sets the id.
-     *
-     * @param id the new id
-     */
-    public void setId(final int id) {
-        this.id = id;
-    }
+	/**
+	 * Sets the id.
+	 *
+	 * @param id
+	 *            the new id
+	 */
+	public void setId(final int id) {
+		this.id = id;
+	}
 
-    /**
-     * Gets the first name.
-     *
-     * @return the first name
-     */
-    public String getFirstName() {
+	/**
+	 * Gets the first name.
+	 *
+	 * @return the first name
+	 */
+	public String getFirstName() {
 		return firstName;
 	}
 
 	/**
 	 * Sets the first name.
 	 *
-	 * @param firstName the new first name
+	 * @param firstName
+	 *            the new first name
 	 */
 	public void setFirstName(final String firstName) {
 		this.firstName = firstName;
@@ -267,25 +274,27 @@ public class User {
 	/**
 	 * Sets the last name.
 	 *
-	 * @param lastName the new last name
+	 * @param lastName
+	 *            the new last name
 	 */
 	public void setLastName(final String lastName) {
 		this.lastName = lastName;
 	}
 
-    /**
-     * Gets the email.
-     *
-     * @return the email
-     */
-    public String getEmail() {
+	/**
+	 * Gets the email.
+	 *
+	 * @return the email
+	 */
+	public String getEmail() {
 		return email;
 	}
 
 	/**
 	 * Sets the email.
 	 *
-	 * @param email the new email
+	 * @param email
+	 *            the new email
 	 */
 	public void setEmail(final String email) {
 		this.email = email;
@@ -303,7 +312,8 @@ public class User {
 	/**
 	 * Sets the address.
 	 *
-	 * @param address the new address
+	 * @param address
+	 *            the new address
 	 */
 	public void setAddress(final String address) {
 		this.address = address;
@@ -321,12 +331,12 @@ public class User {
 	/**
 	 * Sets the phone number.
 	 *
-	 * @param phoneNumber the new phone number
+	 * @param phoneNumber
+	 *            the new phone number
 	 */
 	public void setPhoneNumber(final String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
 
 	/**
 	 * Gets the ownership.
@@ -340,17 +350,20 @@ public class User {
 	/**
 	 * Sets the ownership.
 	 *
-	 * @param ownership the new ownership
+	 * @param ownership
+	 *            the new ownership
 	 */
 	public void setOwnership(final String ownership) {
 		this.ownership = ownership;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public final String toString(){
-        return "id=" + id+", name=" + firstName+ " " + lastName + " age = " + age;
-    }
+	public String toString() {
+		return "id=" + id + ", name=" + firstName + " " + lastName + " age = " + age;
+	}
 }

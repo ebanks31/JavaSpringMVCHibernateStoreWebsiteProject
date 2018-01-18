@@ -7,10 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ebanks.springapp.filters.MetricService;
 import com.ebanks.springapp.service.OrderService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The HomeController for handling REST request from the home page.
  */
@@ -27,16 +25,17 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 
-	//TODO: Need to more REST End points for Order Controller.
+	// TODO: Need to more REST End points for Order Controller.
 
 	/**
 	 * Shows the user's order page.
 	 *
-	 * @param model            the model
+	 * @param model
+	 *            the model
 	 * @return the page view
 	 */
 	@RequestMapping(value = "/orders", method = RequestMethod.GET)
-	public String home(final Model model) {
+	public String getOrders(final Model model) {
 		ORDER_CONTROLLER_LOGGER.info("Going to home page");
 
 		return ORDER;

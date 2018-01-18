@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
-import com.ebanks.springapp.model.Product;
 import com.ebanks.springapp.model.User;
 
 /**
@@ -226,7 +225,7 @@ public class UserDAOImpl implements UserDAO {
 
 		return (User) crit.uniqueResult();
 	}
-	}
+
 
 	/**
 	 * {@inheritDoc}

@@ -318,7 +318,7 @@ public class AdminUserDAOImpl implements AdminUserDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<User> personsList = session.createQuery(FROM_PERSON_TABLE).list();
 
-		Criteria criteria = session.createCriteria(Person.class);
+		Criteria criteria = session.createCriteria(User.class);
 		ProjectionList columns = Projections.projectionList()
 				.add(Projections.property(ADDRESS));
 		criteria.setProjection(Projections.distinct(columns));

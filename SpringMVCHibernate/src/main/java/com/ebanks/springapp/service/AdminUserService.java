@@ -1,129 +1,144 @@
 package com.ebanks.springapp.service;
 
 import java.util.List;
+
 import com.ebanks.springapp.model.User;
 
+// TODO: Auto-generated Javadoc
 /**
- * The Interface PersonService.
+ * The Interface UserService.
  */
 public interface AdminUserService {
 
-    /**
-     * Adds the person.
-     *
-     * @param p the p
-     */
-    void addPerson(User person);
+	/**
+	 * Adds the user.
+	 *
+	 * @param user
+	 *            the user
+	 */
+	void addUser(User user);
 
-    /**
-     * Update person.
-     *
-     * @param p the p
-     */
-    void updatePerson(User person);
+	/**
+	 * Update user.
+	 *
+	 * @param user
+	 *            the user
+	 */
+	void updateUser(User user);
 
-    /**
-     * List persons.
-     *
-     * @return the list
-     */
-    List<User> listPersons();
+	/**
+	 * List users.
+	 *
+	 * @return the list
+	 */
+	List<User> listUsers();
 
-    /**
-     * Gets the person by id.
-     *
-     * @param id the id
-     * @return the person by id
-     */
-    User getPersonById(int id);
+	/**
+	 * Gets the user by id.
+	 *
+	 * @param id
+	 *            the id
+	 * @return the user by id
+	 */
+	User getUserById(int id);
 
-    /**
-     * Removes the person.
-     *
-     * @param id the id
-     */
-    void removePerson(int id);
+	/**
+	 * Removes the user.
+	 *
+	 * @param id
+	 *            the id
+	 */
+	void removeUser(int id);
 
-    /**
-     * Gets the people by address.
-     *
-     * @param idList the id list
-     * @return the people by address
-     */
-    List<User> getPeopleByAddress(String address);
+	/**
+	 * Gets the people by address.
+	 *
+	 * @param address
+	 *            the address
+	 * @return the people by address
+	 */
+	List<User> getUsersByAddress(String address);
 
-    /**
-     * Gets the people by with ownership.
-     *
-     * @param idList the id list
-     * @return the people by with ownership
-     */
-    List<User> getPeopleByWithOwnership();
+	/**
+	 * Gets the people by with ownership.
+	 *
+	 * @return the people by with ownership
+	 */
+	List<User> getUsersByOwnership();
 
-    /**
-     * Gets the people by with out ownership.
-     *
-     * @param idList the id list
-     * @return the people by with out ownership
-     */
-    List<User> getPeopleByWithOutOwnership();
+	/**
+	 * Gets the people by with out ownership.
+	 *
+	 * @return the people by with out ownership
+	 */
+	List<User> getUsersByWithOutOwnership();
 
 	/**
 	 * Gets the address list.
 	 *
-	 * @param addressList the address list
+	 * @param addressList
+	 *            the address list
 	 * @return the address list
 	 */
-	List<Object[]> getAddressListByGivenParameters(List<String> addressList);
+	List<Object[]> getUsersByAddressListByGivenParameters(List<String> addressList);
 
 	/**
 	 * Gets the all distinct address.
 	 *
 	 * @return the all distinct address
 	 */
-	List<User> getAllDistinctAddress();
+	List<User> getUsersByDistinctAddress();
 
 	/**
-	 * List persons order by last name asc.
+	 * List users order by last name asc.
 	 *
 	 * @return the list
 	 */
-	List<User> listPersonsOrderbyLastNameASC();
+	List<User> listUsersOrderbyLastNameASC();
 
 	/**
-	 * List persons orderby last name desc.
+	 * List users orderby last name desc.
 	 *
 	 * @return the list
 	 */
-	List<User> listPersonsOrderbyLastNameDESC();
+	List<User> listUsersOrderbyLastNameDESC();
 
 	/**
-	 * List persons above or equal to legal age.
+	 * List users above or equal to legal age.
 	 *
 	 * @return the list
 	 */
-	List<User> listPersonsAboveOrEqualToLegalAge();
-
+	List<User> listUsersAboveOrEqualToLegalAge();
 
 	/**
-	 * List persons less than legal age.
+	 * List users less than legal age.
 	 *
 	 * @return the list
 	 */
-	List<User> listPersonsLessThanLegalAge();
+	List<User> listUsersLessThanLegalAge();
 
 	/**
-	 * Gets the person list average min max age.
+	 * Gets the user list average min max age.
 	 *
-	 * @return the person list average min max age
+	 * @return the user list average min max age
 	 */
-	List<User> getPersonListAverageMinMaxAge();
+	List<User> getUsersByAverageMinMaxAge();
 
 	/**
-	 * Persons by specific address.
+	 * Users by specific address.
 	 *
-	 * @param address the address
+	 * @param address
+	 *            the address
 	 * @return the list
 	 */
-	List<User> personsBySpecificAddress(String address);
+	List<User> getUsersBySpecificAddress(String address);
+
+	/**
+	 * Gets the user by user name.
+	 *
+	 * @param email
+	 *            the email
+	 * @return the user by user name
+	 */
+	User getUserByUserName(String email);
 }

@@ -1,7 +1,5 @@
 package com.ebanks.springapp.controllers;
 
-import java.sql.SQLException;
-
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -37,40 +35,38 @@ public class RegisterController {
 	 */
 	@RequestMapping(value = "/user/register", method = RequestMethod.GET)
 	public String register(Model model) {
-	    User user = new User();
-	    model.addAttribute("user", user);
-	    REGISTER_CONTROLLER_LOGGER.info("User has entered registration page");
+		User user = new User();
+		model.addAttribute("user", user);
+		REGISTER_CONTROLLER_LOGGER.info("User has entered registration page");
 
-	    return REGISTRATION;
+		return REGISTRATION;
 	}
 
 	@RequestMapping(value = "/user/registration", method = RequestMethod.POST)
-	public ModelAndView registerUserAccount
-	      (@ModelAttribute("user") @Valid User user,
-	      BindingResult result, WebRequest request, Errors errors) {
+	public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid User user, BindingResult result,
+			WebRequest request, Errors errors) {
 
-	    User registeredUser = new User();
-	    if (!result.hasErrors()) {
-	    	createUserAccount(user, result);
-	    }
+		if (!result.hasErrors()) {
+			createUserAccount(user, result);
+		}
 
-	    if (result.hasErrors()) {
-	        return new ModelAndView(REGISTRATION, "user", user);
-	    }
-	    else {
-	        return new ModelAndView("home", "user", user);
-	    }
+		if (result.hasErrors()) {
+			return new ModelAndView(REGISTRATION, "user", user);
+		} else {
+			return new ModelAndView("home", "user", user);
+		}
 	}
 
 	private void createUserAccount(User user, BindingResult result) {
-	    try {
-	        userService.addUser(user);
-	    } catch (SQLException e) {
-		    REGISTER_CONTROLLER_LOGGER.info(String.format("An SQL exception has occurred: %s", e));
-	    } catch (Exception e) {
-	    	//TODO: Need to split into separate specific exception
-		    REGISTER_CONTROLLER_LOGGER.info(String.format("An exception has occurred: %s", e));
-	    }
-	 }
+		try {
+			userService.addUser(user);
+		} // catch (SQLException e) {
+			// REGISTER_CONTROLLER_LOGGER.info(String.format("An SQL exception has occurred:
+			// %s", e));}
+		catch (Exception e) {
+			// TODO: Need to split into separate specific exception
+			REGISTER_CONTROLLER_LOGGER.info(String.format("An exception has occurred: %s", e));
+		}
+	}
 
 }
